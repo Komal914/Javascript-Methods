@@ -1,2 +1,2 @@
 # Javascript-Methods
-##Contributers: Komal Kaur, Sanjidah Abdullah
+Contributers: Komal Kaur, Sanjidah Abdullah
