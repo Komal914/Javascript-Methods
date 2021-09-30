@@ -17,6 +17,7 @@ Array.prototype.myEach = function (callbackFn) {
 // console.log("Foreach:");
 // arr.forEach((element) => console.log(element));
 
+
 // MAP //
 Array.prototype.myMap = function () {};
 
