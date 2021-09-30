@@ -27,16 +27,17 @@ Array.prototype.myIndexOf = function () {};
 
 // PUSH: adds one or more elements to the end of an array and returns the new length of the array.//
 Array.prototype.myPush = function(...args){
-	let arg_i = 0;
+    let arg_i = 0;
     let length = this.length;
     
     // last element of 'this' is at length - 1
-	for(let i = length; i < length + args.length; i++){
+    for(let i = length; i < length + args.length; i++){
         this[i] = args[arg_i]; // add the values of passed in array to 'this' array
-            arg_i++;           // increment index of passed in array (args)
+        arg_i++;               // increment index of passed in array (args)
         }
-	    return this.length;
-    };
+        
+    return this.length;
+};
 
 // Test
 // const arr = [1,2,3,4,5];
