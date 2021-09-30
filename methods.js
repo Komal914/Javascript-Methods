@@ -9,6 +9,7 @@ Array.prototype.myEach = function (callbackFn) {
 };
 
 // MAP //
+//Maps the array into a new array with all the same vals
 Array.prototype.myMap = function (callbackFn) {
   let newarray = []; //create an empty array
   newarray.length = this.length; //set length
@@ -20,7 +21,19 @@ Array.prototype.myMap = function (callbackFn) {
 };
 
 // FILTER //
-Array.prototype.myFilter = function () {};
+//creates a new array with only the vals that fit the call back func's conditions
+Array.prototype.myFilter = function (callbackFn) {
+  let newarray = []; //create an empty array
+  //loop through each element in original array
+  for (let i = 0; i < this.length; i++) {
+    //if the function's elements match callbackfn's reqs, isTrue is true
+    let isTrue = callbackFn(this[i]);
+    if (isTrue == true) {
+      newarray.push(this[i]); //if condition is met, push val into newarray
+    }
+  }
+  return newarray; //return filtered array
+};
 
 // SOME //
 Array.prototype.mySome = function () {};
@@ -53,11 +66,12 @@ Object.grabValues = function () {};
 
 //****************-testing-**********************
 
-// // // //Test
-// const arr = [1, 2, 3, 4, 5];
-// console.log(arr);
-// console.log("MYMAP:");
-// arr.myMap((element) => console.log(element - 2));
-//
-// console.log("map:");
-// arr.map((element) => console.log(element - 2));
+// // // // //Test
+// const arr = ["helloooo", "World", "komalllll", "ash", "tr"];
+// console.log("Array:", arr);
+// const result = arr.filter((word) => word.length > 4);
+// console.log("Filter:");
+// console.log(result);
+// const myresult = arr.myFilter((word) => word.length > 4);
+// console.log("MYYYYFilter:");
+// console.log(myresult);
