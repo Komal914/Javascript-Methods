@@ -8,7 +8,6 @@ Array.prototype.myEach = function (callbackFn) {
   }
 };
 
-
 // MAP //
 //Maps the array into a new array with all the same vals
 Array.prototype.myMap = function (callbackFn) {
@@ -17,12 +16,9 @@ Array.prototype.myMap = function (callbackFn) {
   //for the length of this array
   for (let i = 0; i < this.length; i++) {
     newarray[i] = this[i]; //copy the vals into new array
-    callbackFn(newarray[i]); //get the array back
+    callbackFn(newarray); //get the array back
   }
 };
-
-
-
 
 // FILTER //
 //creates a new array with only the vals that fit the call back func's conditions
@@ -40,7 +36,17 @@ Array.prototype.myFilter = function (callbackFn) {
 };
 
 // SOME //
-Array.prototype.mySome = function () {};
+//checks if a property is true for at least one element in the array
+Array.prototype.mySome = function (callbackFn) {
+  //loops through my array
+  for (let i = 0; i < this.length; i++) {
+    let isTrue = callbackFn(this[i]); //isTrue is true when callbackfn's conditions are met
+    if (isTrue == true) {
+      return true; //return true if an element meets the reqs
+    }
+  }
+  return false; //at the end of the for loop so no vals met the condition, val must be false
+};
 
 // EVERY //
 Array.prototype.myEvery = function () {};
@@ -50,35 +56,24 @@ Array.prototype.myReduce = function () {};
 
 //*******************Start of Sanjidah Abdullah's functions***************
 // INCLUDES: determines whether an array includes a certain value among its entries, returning true or false as appropriate.//
-Array.prototype.myIncludes = function () {
-};
+Array.prototype.myIncludes = function () {};
 
 // INDEXOF //
 Array.prototype.myIndexOf = function () {};
 
 // PUSH: adds one or more elements to the end of an array and returns the new length of the array.//
-Array.prototype.myPush = function(...args){
-    let arg_i = 0;
-    let length = this.length;
-    
-    // last element of 'this' is at length - 1
-    for(let i = length; i < length + args.length; i++){
-        this[i] = args[arg_i]; // add the values of passed in array to 'this' array
-        arg_i++;               // increment index of passed in array (args)
-        }
-        
-    return this.length;
+Array.prototype.myPush = function (...args) {
+  let arg_i = 0;
+  let length = this.length;
+
+  // last element of 'this' is at length - 1
+  for (let i = length; i < length + args.length; i++) {
+    this[i] = args[arg_i]; // add the values of passed in array to 'this' array
+    arg_i++; // increment index of passed in array (args)
+  }
+
+  return this.length;
 };
-
-// Test
-// const arr = [1,2,3,4,5];
-// console.log("myPush:");
-// console.log(arr.myPush(6,7,8)); // prints 8
-// console.log(arr);               // prints [1,2,3,4,5,6,7,8]
-// console.log("Push:");
-// console.log(arr.push(6,7,8));   // prints 8
-// console.log(arr);               // prints [1,2,3,4,5,6,7,8]
-
 
 // LASTINDEXOF //
 Array.prototype.myLastIndexOf = function () {};
@@ -89,4 +84,12 @@ Object.grabKeys = function () {};
 // VALUES //
 Object.grabValues = function () {};
 
-
+//********************Test***********
+// const arr = [1, 2, 3, 4, 5];
+// const even = (element) => element == 1; // checks whether an element is even
+// console.log("MYYYYYYYsome:");
+// console.log(arr.mySome(even));
+// // expected output: true
+// console.log("Some:");
+// console.log(arr.some(even));
+// // expected output: true
