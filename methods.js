@@ -8,6 +8,7 @@ Array.prototype.myEach = function (callbackFn) {
   }
 };
 
+
 // MAP //
 Array.prototype.myMap = function (callbackFn) {
   let newarray = []; //create an empty array
@@ -18,6 +19,9 @@ Array.prototype.myMap = function (callbackFn) {
     callbackFn(newarray[i]); //get the array back
   }
 };
+
+
+
 
 // FILTER //
 Array.prototype.myFilter = function () {};
@@ -51,13 +55,3 @@ Object.grabKeys = function () {};
 // VALUES //
 Object.grabValues = function () {};
 
-//****************-testing-**********************
-
-// // // //Test
-// const arr = [1, 2, 3, 4, 5];
-// console.log(arr);
-// console.log("MYMAP:");
-// arr.myMap((element) => console.log(element - 2));
-//
-// console.log("map:");
-// arr.map((element) => console.log(element - 2));
