@@ -1,6 +1,22 @@
 //*******************Start of Komal Kaur's functions***************
 // FOR EACH //
-Array.prototype.myEach = function () {};
+// To access each element in the array, pass in a func to be applied
+Array.prototype.myEach = function (callbackFn) {
+  for (let i = 0; i < this.length; i++) {
+    if (this[i] == undefined) continue; //if my val is not defined, skip
+    callbackFn(this[i], i, this); //
+  }
+};
+
+// //Test
+// const arr = [1, 2, 3, 4, 5];
+// //arr.forEach((element) => console.log(element));
+// console.log("For MYeach:");
+// arr.myEach((element) => console.log(element));
+//
+// console.log("Foreach:");
+// arr.forEach((element) => console.log(element));
+
 
 // MAP //
 Array.prototype.myMap = function () {};
