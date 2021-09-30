@@ -8,18 +8,20 @@ Array.prototype.myEach = function (callbackFn) {
   }
 };
 
-// //Test
-// const arr = [1, 2, 3, 4, 5];
-// //arr.forEach((element) => console.log(element));
-// console.log("For MYeach:");
-// arr.myEach((element) => console.log(element));
-//
-// console.log("Foreach:");
-// arr.forEach((element) => console.log(element));
-
 
 // MAP //
-Array.prototype.myMap = function () {};
+Array.prototype.myMap = function (callbackFn) {
+  let newarray = []; //create an empty array
+  newarray.length = this.length; //set length
+  //for the length of this array
+  for (let i = 0; i < this.length; i++) {
+    newarray[i] = this[i]; //copy the vals into new array
+    callbackFn(newarray[i]); //get the array back
+  }
+};
+
+
+
 
 // FILTER //
 Array.prototype.myFilter = function () {};
@@ -52,3 +54,4 @@ Object.grabKeys = function () {};
 
 // VALUES //
 Object.grabValues = function () {};
+
