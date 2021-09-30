@@ -8,6 +8,7 @@ Array.prototype.myEach = function (callbackFn) {
   }
 };
 
+
 // MAP //
 //Maps the array into a new array with all the same vals
 Array.prototype.myMap = function (callbackFn) {
@@ -19,6 +20,9 @@ Array.prototype.myMap = function (callbackFn) {
     callbackFn(newarray[i]); //get the array back
   }
 };
+
+
+
 
 // FILTER //
 //creates a new array with only the vals that fit the call back func's conditions
@@ -64,14 +68,4 @@ Object.grabKeys = function () {};
 // VALUES //
 Object.grabValues = function () {};
 
-//****************-testing-**********************
 
-// // // // //Test
-// const arr = ["helloooo", "World", "komalllll", "ash", "tr"];
-// console.log("Array:", arr);
-// const result = arr.filter((word) => word.length > 4);
-// console.log("Filter:");
-// console.log(result);
-// const myresult = arr.myFilter((word) => word.length > 4);
-// console.log("MYYYYFilter:");
-// console.log(myresult);
