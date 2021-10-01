@@ -67,8 +67,40 @@ Array.prototype.myEvery = function (callbackFn) {
 Array.prototype.myReduce = function () {};
 
 //*******************Start of Sanjidah Abdullah's functions***************
-// INCLUDES: determines whether an array includes a certain value among its entries, returning true or false as appropriate.//
-Array.prototype.myIncludes = function () {};
+// INCLUDES//
+// determines whether an array includes a certain value among its entries, returning true or false as appropriate
+Array.prototype.myIncludes = function(searchElement, fromIndex = 0){
+  if(fromIndex >= this.length){ // invalid fromIndex since index is greater or equal to length of array
+      return false;
+  }
+  if(fromIndex < 0){ // negative starting index value
+      fromIndex = this.length + fromIndex; // compute fromIndex for negative value
+      for(let i = fromIndex ; i < this.length; i++){
+          if(this[i] === searchElement){ 
+              return true; // value found
+          }
+      }
+  }
+  else{ // positive starting index value where fromIndex > 0
+      for(let i = fromIndex ; i < this.length; i++){
+          if(this[i] === searchElement){ 
+              return true; // value found
+          }
+      }
+  }
+  return false; // value not found
+};
+
+// Test
+// const arr = [1,2,3,4,5];
+// console.log("myIncludes:"); 
+// console.log(arr.myIncludes(5));      // true
+// console.log(arr.myIncludes(3,-2));   // false
+
+// console.log("includes:");
+// console.log(arr.includes(5));        // true    
+// console.log(arr.includes(3,-2));     // false 
+
 
 // INDEXOF //
 Array.prototype.myIndexOf = function () {};
