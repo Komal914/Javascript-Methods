@@ -22,8 +22,6 @@ Array.prototype.myMap = function (callbackFn) {
 };
 
 
-
-
 // FILTER //
 //creates a new array with only the vals that fit the call back func's conditions
 Array.prototype.myFilter = function (callbackFn) {
@@ -49,14 +47,47 @@ Array.prototype.myEvery = function () {};
 Array.prototype.myReduce = function () {};
 
 //*******************Start of Sanjidah Abdullah's functions***************
-// INCLUDES: determines whether an array includes a certain value among its entries, returning true or false as appropriate.//
-Array.prototype.myIncludes = function () {
+// INCLUDES//
+// determines whether an array includes a certain value among its entries, returning true or false as appropriate
+Array.prototype.myIncludes = function(searchElement, fromIndex = 0){
+    if(fromIndex >= this.length){ // invalid fromIndex since index is greater or equal to length of array
+        return false;
+    }
+    if(fromIndex < 0){ // negative starting index value
+        fromIndex = this.length + fromIndex; // compute fromIndex for negative value
+        for(let i = fromIndex ; i < this.length; i++){
+            if(this[i] === searchElement){ 
+                return true; // value found
+            }
+        }
+    }
+    else{ // positive starting index value where fromIndex > 0
+        for(let i = fromIndex ; i < this.length; i++){
+            if(this[i] === searchElement){ 
+                return true; // value found
+            }
+        }
+    }
+    return false; // value not found
 };
 
+// Test
+// const arr = [1,2,3,4,5];
+// console.log("myIncludes:"); 
+// console.log(arr.myIncludes(5));      // true
+// console.log(arr.myIncludes(3,-2));   // false
+
+// console.log("includes:");
+// console.log(arr.includes(5));        // true    
+// console.log(arr.includes(3,-2));     // false 
+
+
 // INDEXOF //
+// returns the first index at which a given element can be found in the array, or -1 if it is not present.
 Array.prototype.myIndexOf = function () {};
 
-// PUSH: adds one or more elements to the end of an array and returns the new length of the array.//
+// PUSH //
+// adds one or more elements to the end of an array and returns the new length of the array
 Array.prototype.myPush = function(...args){
     let arg_i = 0;
     let length = this.length;
@@ -65,8 +96,7 @@ Array.prototype.myPush = function(...args){
     for(let i = length; i < length + args.length; i++){
         this[i] = args[arg_i]; // add the values of passed in array to 'this' array
         arg_i++;               // increment index of passed in array (args)
-        }
-        
+    }
     return this.length;
 };
 
