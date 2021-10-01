@@ -64,66 +64,97 @@ Array.prototype.myEvery = function (callbackFn) {
 };
 
 // REDUCE //
-Array.prototype.myReduce = function () {};
+Array.prototype.myReduce = function (callbackFn, anotherVal) {
+  let accumulator = 0;
+  //loop through the array
+  for (let i = 0; i < this.length; i++) {
+    let currentValue = this[i];
+    //update accumulator with the func
+    accumulator = callbackFn(accumulator, currentValue);
+  }
+  //if another val is provided
+  if (anotherVal != undefined) {
+    //update accumulator with another  val
+    accumulator = callbackFn(accumulator, anotherVal);
+  }
+  return accumulator;
+};
+
+const array1 = [1, 2, 3, 4];
+const reducer = (previousValue, currentValue) => previousValue + currentValue;
+
+// 1 + 2 + 3 + 4
+// console.log("Correct:", array1.reduce(reducer));
+// // expected output: 10
+// console.log("Mine:", array1.myReduce(reducer));
+//
+// // 5 + 1 + 2 + 3 + 4
+// console.log("Correct 2:", array1.reduce(reducer, 5));
+// console.log("MINE", array1.myReduce(reducer, 5));
+
+// expected output: 15
 
 //*******************Start of Sanjidah Abdullah's functions***************
 // INCLUDES//
 // determines whether an array includes a certain value among its entries, returning true or false as appropriate
-Array.prototype.myIncludes = function(searchElement, fromIndex = 0){
-  if(fromIndex >= this.length){ // invalid fromIndex since index is greater or equal to length of array
-      return false;
+Array.prototype.myIncludes = function (searchElement, fromIndex = 0) {
+  if (fromIndex >= this.length) {
+    // invalid fromIndex since index is greater or equal to length of array
+    return false;
   }
-  if(fromIndex < 0){ // negative starting index value
-      fromIndex = this.length + fromIndex; // compute fromIndex for negative value
-      for(let i = fromIndex ; i < this.length; i++){
-          if(this[i] === searchElement){ 
-              return true; // value found
-          }
+  if (fromIndex < 0) {
+    // negative starting index value
+    fromIndex = this.length + fromIndex; // compute fromIndex for negative value
+    for (let i = fromIndex; i < this.length; i++) {
+      if (this[i] === searchElement) {
+        return true; // value found
       }
-  }
-  else{ // positive starting index value where fromIndex > 0
-      for(let i = fromIndex ; i < this.length; i++){
-          if(this[i] === searchElement){ 
-              return true; // value found
-          }
+    }
+  } else {
+    // positive starting index value where fromIndex > 0
+    for (let i = fromIndex; i < this.length; i++) {
+      if (this[i] === searchElement) {
+        return true; // value found
       }
+    }
   }
   return false; // value not found
 };
 
 // Test
 // const arr = [1,2,3,4,5];
-// console.log("myIncludes:"); 
+// console.log("myIncludes:");
 // console.log(arr.myIncludes(5));      // true
 // console.log(arr.myIncludes(3,-2));   // false
 
 // console.log("includes:");
-// console.log(arr.includes(5));        // true    
-// console.log(arr.includes(3,-2));     // false 
-
+// console.log(arr.includes(5));        // true
+// console.log(arr.includes(3,-2));     // false
 
 // INDEXOF //
 // returns the first index at which a given element can be found in the array, or -1 if it is not present.
 Array.prototype.myIndexOf = function (searchElement, fromIndex = 0) {
-	if(fromIndex >= this.length){ // invalid fromIndex since index is greater or equal to length of array
-        return -1; // array will not be searched
+  if (fromIndex >= this.length) {
+    // invalid fromIndex since index is greater or equal to length of array
+    return -1; // array will not be searched
+  }
+  if (fromIndex < 0) {
+    // negative starting index value
+    fromIndex = this.length + fromIndex; // compute start index for negative value
+    for (let i = fromIndex; i < this.length; i++) {
+      if (this[i] === searchElement) {
+        return i; // value found
+      }
     }
-    if(fromIndex < 0){ // negative starting index value
-        fromIndex = this.length + fromIndex; // compute start index for negative value
-        for(let i = fromIndex ; i < this.length; i++){
-            if(this[i] === searchElement){ 
-                return i; // value found
-            }
-        }
+  } else {
+    // positive starting index value where fromIndex > 0
+    for (let i = fromIndex; i < this.length; i++) {
+      if (this[i] === searchElement) {
+        return i; // value found
+      }
     }
-    else{ // positive starting index value where fromIndex > 0
-        for(let i = fromIndex ; i < this.length; i++){
-            if(this[i] === searchElement){ 
-                return i; // value found
-            }
-        }
-    }
-    return -1; // value not found
+  }
+  return -1; // value not found
 };
 
 // Test
@@ -133,7 +164,6 @@ Array.prototype.myIndexOf = function (searchElement, fromIndex = 0) {
 
 // console.log(beasts.myIndexOf('bison', 2));
 // console.log(beasts.indexOf('bison', 2));
-
 
 // PUSH: adds one or more elements to the end of an array and returns the new length of the array.//
 Array.prototype.myPush = function (...args) {
@@ -150,25 +180,28 @@ Array.prototype.myPush = function (...args) {
 };
 
 // LASTINDEXOF //
-// returns the last index at which a given element can be found in the array, or -1 if it is not present. 
-Array.prototype.myLastIndexOf = function(searchElement, fromIndex = this.length - 1){
-	if(fromIndex >= this.length) {
-		for(let i = fromIndex; i >= 0; i--) {  // iterating from end of array
-			if(this[i] === searchElement) {
-				return i; // value found
-			}
-		}
-  } 
-  else if(fromIndex < 0) {
+// returns the last index at which a given element can be found in the array, or -1 if it is not present.
+Array.prototype.myLastIndexOf = function (
+  searchElement,
+  fromIndex = this.length - 1
+) {
+  if (fromIndex >= this.length) {
+    for (let i = fromIndex; i >= 0; i--) {
+      // iterating from end of array
+      if (this[i] === searchElement) {
+        return i; // value found
+      }
+    }
+  } else if (fromIndex < 0) {
     fromIndex = this.length + fromIndex; // compute start index for negative value
   }
-	for(let i = fromIndex; i >= 0; i--) {
-		if(this[i] === searchElement) {
-			return i; // value found
-		}
-	}   
+  for (let i = fromIndex; i >= 0; i--) {
+    if (this[i] === searchElement) {
+      return i; // value found
+    }
+  }
   return -1; // value not found
-}
+};
 
 // Test
 // const animals = ['Dodo', 'Tiger', 'Penguin', 'Dodo'];
@@ -179,7 +212,6 @@ Array.prototype.myLastIndexOf = function(searchElement, fromIndex = this.length 
 // console.log(animals.lastIndexOf('Dodo',-2));    // expected output: 0
 // console.log(animals.myLastIndexOf('Dodo',-2));  // expected output: 0
 
-
 // KEYS //
 Object.grabKeys = function () {};
 
@@ -187,9 +219,9 @@ Object.grabKeys = function () {};
 Object.grabValues = function () {};
 
 //********************Test***********
-const isBelowThreshold = (currentValue) => currentValue < 10;
-
-const array1 = [1, 30, 39, 29, 10, 13];
-
-console.log("VAL", array1.every(isBelowThreshold));
-console.log("MYVAL", array1.myEvery(isBelowThreshold));
+// const isBelowThreshold = (currentValue) => currentValue < 10;
+//
+// const array1 = [1, 30, 39, 29, 10, 13];
+//
+// console.log("VAL", array1.every(isBelowThreshold));
+// console.log("MYVAL", array1.myEvery(isBelowThreshold));
