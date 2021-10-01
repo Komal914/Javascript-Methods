@@ -150,7 +150,35 @@ Array.prototype.myPush = function (...args) {
 };
 
 // LASTINDEXOF //
-Array.prototype.myLastIndexOf = function () {};
+// returns the last index at which a given element can be found in the array, or -1 if it is not present. 
+Array.prototype.myLastIndexOf = function(searchElement, fromIndex = this.length - 1){
+	if(fromIndex >= this.length) {
+		for(let i = fromIndex; i >= 0; i--) {  // iterating from end of array
+			if(this[i] === searchElement) {
+				return i; // value found
+			}
+		}
+  } 
+  else if(fromIndex < 0) {
+    fromIndex = this.length + fromIndex; // compute start index for negative value
+  }
+	for(let i = fromIndex; i >= 0; i--) {
+		if(this[i] === searchElement) {
+			return i; // value found
+		}
+	}   
+  return -1; // value not found
+}
+
+// Test
+// const animals = ['Dodo', 'Tiger', 'Penguin', 'Dodo'];
+
+// console.log(animals.lastIndexOf('Dodo'));    // expected output: 3
+// console.log(animals.myLastIndexOf('Dodo'));  // expected output: 3
+
+// console.log(animals.lastIndexOf('Dodo',-2));    // expected output: 0
+// console.log(animals.myLastIndexOf('Dodo',-2));  // expected output: 0
+
 
 // KEYS //
 Object.grabKeys = function () {};
