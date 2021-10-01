@@ -103,7 +103,37 @@ Array.prototype.myIncludes = function(searchElement, fromIndex = 0){
 
 
 // INDEXOF //
-Array.prototype.myIndexOf = function () {};
+// returns the first index at which a given element can be found in the array, or -1 if it is not present.
+Array.prototype.myIndexOf = function (searchElement, fromIndex = 0) {
+	if(fromIndex >= this.length){ // invalid fromIndex since index is greater or equal to length of array
+        return -1; // array will not be searched
+    }
+    if(fromIndex < 0){ // negative starting index value
+        fromIndex = this.length + fromIndex; // compute start index for negative value
+        for(let i = fromIndex ; i < this.length; i++){
+            if(this[i] === searchElement){ 
+                return i; // value found
+            }
+        }
+    }
+    else{ // positive starting index value where fromIndex > 0
+        for(let i = fromIndex ; i < this.length; i++){
+            if(this[i] === searchElement){ 
+                return i; // value found
+            }
+        }
+    }
+    return -1; // value not found
+};
+
+// Test
+// const beasts = ['ant', 'bison', 'camel', 'duck', 'bison'];
+// console.log(beasts.myIndexOf('bison'));
+// console.log(beasts.indexOf('bison'));
+
+// console.log(beasts.myIndexOf('bison', 2));
+// console.log(beasts.indexOf('bison', 2));
+
 
 // PUSH: adds one or more elements to the end of an array and returns the new length of the array.//
 Array.prototype.myPush = function (...args) {
