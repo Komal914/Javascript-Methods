@@ -49,7 +49,19 @@ Array.prototype.mySome = function (callbackFn) {
 };
 
 // EVERY //
-Array.prototype.myEvery = function () {};
+//if all the elements of the array meet the callbackFn's funcs, will return true or else false
+Array.prototype.myEvery = function (callbackFn) {
+  //loops through my array
+  for (let i = 0; i < this.length; i++) {
+    //check if any val is false
+    let isFalse = callbackFn(this[i]); //holds if true or false for callbackfn
+    if (isFalse == false) {
+      //check for false, because if any one val is false, the whole thing is false because we want all elements to be true
+      return false;
+    }
+  }
+  return true; //otherwise return true
+};
 
 // REDUCE //
 Array.prototype.myReduce = function () {};
@@ -85,11 +97,9 @@ Object.grabKeys = function () {};
 Object.grabValues = function () {};
 
 //********************Test***********
-// const arr = [1, 2, 3, 4, 5];
-// const even = (element) => element == 1; // checks whether an element is even
-// console.log("MYYYYYYYsome:");
-// console.log(arr.mySome(even));
-// // expected output: true
-// console.log("Some:");
-// console.log(arr.some(even));
-// // expected output: true
+const isBelowThreshold = (currentValue) => currentValue < 10;
+
+const array1 = [1, 30, 39, 29, 10, 13];
+
+console.log("VAL", array1.every(isBelowThreshold));
+console.log("MYVAL", array1.myEvery(isBelowThreshold));
