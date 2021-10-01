@@ -12,13 +12,20 @@ Array.prototype.myEach = function (callbackFn) {
 //Maps the array into a new array with all the same vals
 Array.prototype.myMap = function (callbackFn) {
   let newarray = []; //create an empty array
-  newarray.length = this.length; //set length
+
   //for the length of this array
   for (let i = 0; i < this.length; i++) {
-    newarray[i] = this[i]; //copy the vals into new array
-    callbackFn(newarray); //get the array back
+    newarray[i] = callbackFn(this[i]);
+    console.log("new array: ", newarray);
   }
+  return newarray;
 };
+
+// const array1 = [1, 4, 9, 16];
+// // pass a function to map
+// const map1 = array1.myMap((x) => x * 2);
+// console.log(map1);
+// expected output: Array [2, 8, 18, 32]
 
 // FILTER //
 //creates a new array with only the vals that fit the call back func's conditions
@@ -80,8 +87,8 @@ Array.prototype.myReduce = function (callbackFn, anotherVal) {
   return accumulator;
 };
 
-const array1 = [1, 2, 3, 4];
-const reducer = (previousValue, currentValue) => previousValue + currentValue;
+// const array1 = [1, 2, 3, 4];
+// const reducer = (previousValue, currentValue) => previousValue + currentValue;
 
 // 1 + 2 + 3 + 4
 // console.log("Correct:", array1.reduce(reducer));
