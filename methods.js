@@ -188,10 +188,7 @@ Array.prototype.myPush = function (...args) {
 
 // LASTINDEXOF //
 // returns the last index at which a given element can be found in the array, or -1 if it is not present.
-Array.prototype.myLastIndexOf = function (
-  searchElement,
-  fromIndex = this.length - 1
-) {
+Array.prototype.myLastIndexOf = function (searchElement, fromIndex = this.length - 1) {
   if (fromIndex >= this.length) {
     for (let i = fromIndex; i >= 0; i--) {
       // iterating from end of array
@@ -220,7 +217,24 @@ Array.prototype.myLastIndexOf = function (
 // console.log(animals.myLastIndexOf('Dodo',-2));  // expected output: 0
 
 // KEYS //
-Object.grabKeys = function () {};
+// returns an array of a given object's own enumerable property names, iterated in the same order that a normal loop would
+Object.grabKeys= function(obj) {
+  let newArray = []; // empty array
+  for (const prop in obj) {  // iterates through property in given object
+    newArray.push(prop);  // pushes property in new array
+  }
+  return newArray;
+}
+
+// Test
+// const object1 = { a: 'somestring', b: 42, c: false};
+// console.log(Object.grabKeys(object1));
+// console.log(Object.keys(object1));  // ["a", "b", "c"]
+
+// const anObj = { 100: 'a', 2: 'b', 7: 'c' };
+// console.log(Object.grabKeys(anObj)); // ['2', '7', '100']
+// console.log(Object.keys(anObj));     // ['2', '7', '100']
+
 
 // VALUES //
 Object.grabValues = function () {};
