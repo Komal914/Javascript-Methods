@@ -217,11 +217,12 @@ Array.prototype.myLastIndexOf = function (searchElement, fromIndex = this.length
 // console.log(animals.myLastIndexOf('Dodo',-2));  // expected output: 0
 
 // KEYS //
-// returns an array of a given object's own enumerable property names, iterated in the same order that a normal loop would
+/* returns an array of a given object's own enumerable property names, 
+iterated in the same order that a normal loop would */
 Object.grabKeys= function(obj) {
   let newArray = []; // empty array
   for (const prop in obj) {  // iterates through property in given object
-    newArray.push(prop);  // pushes property in new array
+    newArray.push(prop);  // pushes property name in new array
   }
   return newArray;
 }
@@ -237,7 +238,25 @@ Object.grabKeys= function(obj) {
 
 
 // VALUES //
-Object.grabValues = function () {};
+// returns an array of a given object's own enumerable property values
+Object.grabValues = function () {
+  let newArray = []; // empty array
+  for (const prop in obj) {  // iterates through property in given object
+    newArray.push(obj[prop]);  // pushes property value in new array
+  }
+  return newArray;
+};
+
+// Test
+// const object1 = { a: 'somestring', b: 42, c: false};
+// console.log(Object.grabValue(object1)); // ["somestring", 42, false]
+// console.log(Object.values(object1));  // ["somestring", 42, false]
+
+// const anObj = { 100: 'a', 2: 'b', 7: 'c' };
+// console.log(Object.grabValue(anObj)); // ['b', 'c', 'a']
+// console.log(Object.values(anObj));     // ['b', 'c', 'a']
+
+
 
 //********************Test***********
 // const isBelowThreshold = (currentValue) => currentValue < 10;
