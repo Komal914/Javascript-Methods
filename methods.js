@@ -229,7 +229,7 @@ Object.grabKeys= function(obj) {
 
 // Test
 // const object1 = { a: 'somestring', b: 42, c: false};
-// console.log(Object.grabKeys(object1));
+// console.log(Object.grabKeys(object1)); // ["a", "b", "c"]
 // console.log(Object.keys(object1));  // ["a", "b", "c"]
 
 // const anObj = { 100: 'a', 2: 'b', 7: 'c' };
