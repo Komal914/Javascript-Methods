@@ -1,7 +1,7 @@
 # Javascript-Methods
 
 Recreate Javascript methods using Javascript functions: 
-  forEach
+  ```forEach
   Map
   Filter
   Some
@@ -13,5 +13,6 @@ Recreate Javascript methods using Javascript functions:
   lastIndexOf
   Object.keys()
   Object.values()
+  ```
 
 Contributers: Komal Kaur(@komal914), Sanjidah Abdullah (@sanjidah)
