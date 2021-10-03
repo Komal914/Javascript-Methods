@@ -1,17 +1,17 @@
 //***************************************************************************
-//*******************Start of Komal Kaur's functions***************
+//******************* Start of Komal Kaur's functions ***************
 //***************************************************************************
 // FOR EACH //
 // To access each element in the array, pass in a func to be applied
 Array.prototype.myEach = function (callbackFn) {
   for (let i = 0; i < this.length; i++) {
     if (this[i] == undefined) continue; //if my val is not defined, skip
-    callbackFn(this[i], i, this); //
+    callbackFn(this[i], i, this); 
   }
 };
 
 // MAP //
-//Maps the array into a new array with all the same vals
+// Maps the array into a new array with all the same vals
 Array.prototype.myMap = function (callbackFn) {
   let newarray = []; //create an empty array
 
@@ -23,7 +23,7 @@ Array.prototype.myMap = function (callbackFn) {
 };
 
 // FILTER //
-//creates a new array with only the vals that fit the call back func's conditions
+// creates a new array with only the vals that fit the call back func's conditions
 Array.prototype.myFilter = function (callbackFn) {
   let newarray = []; //create an empty array
   //loop through each element in original array
@@ -38,7 +38,7 @@ Array.prototype.myFilter = function (callbackFn) {
 };
 
 // SOME //
-//checks if a property is true for at least one element in the array
+// checks if a property is true for at least one element in the array
 Array.prototype.mySome = function (callbackFn) {
   //loops through my array
   for (let i = 0; i < this.length; i++) {
@@ -51,7 +51,7 @@ Array.prototype.mySome = function (callbackFn) {
 };
 
 // EVERY //
-//if all the elements of the array meet the callbackFn's funcs, will return true or else false
+// if all the elements of the array meet the callbackFn's funcs, will return true or else false
 Array.prototype.myEvery = function (callbackFn) {
   //loops through my array
   for (let i = 0; i < this.length; i++) {
@@ -66,27 +66,30 @@ Array.prototype.myEvery = function (callbackFn) {
 };
 
 // REDUCE //
+/* executes a user-supplied “reducer” callback function on each element of the array, 
+passing in the return value from the calculation on the preceding element */
 Array.prototype.myReduce = function (callbackFn, anotherVal) {
   let accumulator = 0;
-  //loop through the array
+  // loop through the array
   for (let i = 0; i < this.length; i++) {
     let currentValue = this[i];
     //update accumulator with the func
     accumulator = callbackFn(accumulator, currentValue, this[i], this);
   }
-  //if another val is provided
+  // if another val is provided
   if (anotherVal != undefined) {
-    //update accumulator with another  val
+    // update accumulator with another  val
     accumulator = callbackFn(accumulator, anotherVal);
   }
   return accumulator;
 };
 
 //***************************************************************************
-//*******************Start of Sanjidah Abdullah's functions***************
+//******************* Start of Sanjidah Abdullah's functions ***************
 //***************************************************************************
 // INCLUDES//
-// determines whether an array includes a certain value among its entries, returning true or false as appropriate
+/* determines whether an array includes a certain value among its entries, 
+returning true or false as appropriate */
 Array.prototype.myIncludes = function (searchElement, fromIndex = 0) {
   if (fromIndex >= this.length) {
     // invalid fromIndex since index is greater or equal to length of array
@@ -137,26 +140,22 @@ Array.prototype.myIndexOf = function (searchElement, fromIndex = 0) {
   return -1; // value not found
 };
 
-// PUSH: adds one or more elements to the end of an array and returns the new length of the array.//
+// PUSH //
+// adds one or more elements to the end of an array and returns the new length of the array.
 Array.prototype.myPush = function (...args) {
   let arg_i = 0;
   let length = this.length;
-
   // last element of 'this' is at length - 1
   for (let i = length; i < length + args.length; i++) {
     this[i] = args[arg_i]; // add the values of passed in array to 'this' array
     arg_i++; // increment index of passed in array (args)
   }
-
   return this.length;
 };
 
 // LASTINDEXOF //
 // returns the last index at which a given element can be found in the array, or -1 if it is not present.
-Array.prototype.myLastIndexOf = function (
-  searchElement,
-  fromIndex = this.length - 1
-) {
+Array.prototype.myLastIndexOf = function (searchElement,fromIndex = this.length - 1) {
   if (fromIndex >= this.length) {
     for (let i = fromIndex; i >= 0; i--) {
       // iterating from end of array
@@ -189,18 +188,18 @@ Object.grabKeys = function (obj) {
 
 // VALUES //
 // returns an array of a given object's own enumerable property values
-Object.grabValues = function () {
-  let newArray = []; // empty array
+Object.grabValues = function (obj) {
+  let valArray = []; // empty array
   for (const prop in obj) {
     // iterates through property in given object
-    newArray.push(obj[prop]); // pushes property value in new array
+    valArray.push(obj[prop]); // pushes property value in new array
   }
-  return newArray;
+  return valArray;
 };
 
-//**********************************Tests******************************
-
-//********************My Some Test***********
+//********************************** TESTS ******************************
+ 
+//******************** My Some Test ***********
 // const array = [1, 2, 3, 4, 5];
 //
 // // checks whether an element is even
@@ -209,7 +208,7 @@ Object.grabValues = function () {
 // console.log(array.mySome(even));
 // expected output: true
 
-//another test
+// Another test
 
 // function isBiggerThan10(element, index, array) {
 //   return element > 10;
@@ -221,7 +220,7 @@ Object.grabValues = function () {
 // result = [12, 5, 8, 1, 4].mySome(isBiggerThan10); // true
 // console.log(result);
 
-//********************My Filter Test***********
+//******************** My Filter Test ***********
 // const words = [
 //   "spray",
 //   "limit",
@@ -246,7 +245,7 @@ Object.grabValues = function () {
 // console.log(filtered);
 // filtered is [12, 130, 44]
 
-//********************My Each Test***********
+//******************** My Each Test ***********
 // const array1 = ["a", "b", "c"];
 //
 // array1.forEach((element) => console.log("Correct: ", element));
@@ -256,7 +255,7 @@ Object.grabValues = function () {
 // // expected output: "b"
 // // expected output: "c"
 
-//********************My Reducer Test***********
+//******************** My Reducer Test ***********
 // const array1 = [1, 2, 3, 4];
 // const reducer = (previousValue, currentValue) => previousValue + currentValue;
 //
@@ -271,7 +270,7 @@ Object.grabValues = function () {
 
 // expected output: 15
 
-//********************My Includes Test***********
+//******************** My Includes Test ***********
 // const arr = [1,2,3,4,5];
 // console.log("myIncludes:");
 // console.log(arr.myIncludes(5));      // true
@@ -281,7 +280,7 @@ Object.grabValues = function () {
 // console.log(arr.includes(5));        // true
 // console.log(arr.includes(3,-2));     // false
 
-//********************My indexof Test***********
+//******************** My indexof Test ***********
 // const beasts = ['ant', 'bison', 'camel', 'duck', 'bison'];
 // console.log(beasts.myIndexOf('bison'));
 // console.log(beasts.indexOf('bison'));
@@ -289,7 +288,7 @@ Object.grabValues = function () {
 // console.log(beasts.myIndexOf('bison', 2));
 // console.log(beasts.indexOf('bison', 2));
 
-//********************My Lastindexof Test***********
+//******************** My Lastindexof Test ***********
 // const animals = ['Dodo', 'Tiger', 'Penguin', 'Dodo'];
 
 // console.log(animals.lastIndexOf('Dodo'));    // expected output: 3
@@ -298,7 +297,7 @@ Object.grabValues = function () {
 // console.log(animals.lastIndexOf('Dodo',-2));    // expected output: 0
 // console.log(animals.myLastIndexOf('Dodo',-2));  // expected output: 0
 
-//********************My Grab Keys Test***********
+//******************** My Grab Keys Test ***********
 // const object1 = { a: 'somestring', b: 42, c: false};
 // console.log(Object.grabKeys(object1)); // ["a", "b", "c"]
 // console.log(Object.keys(object1));  // ["a", "b", "c"]
@@ -307,7 +306,7 @@ Object.grabValues = function () {
 // console.log(Object.grabKeys(anObj)); // ['2', '7', '100']
 // console.log(Object.keys(anObj));     // ['2', '7', '100']
 
-//********************My Map Test***********
+//******************** My Map Test ***********
 // const array1 = [1, 4, 9, 16];
 // // pass a function to map
 // const map1 = array1.myMap((x) => x * 2);
@@ -328,17 +327,17 @@ Object.grabValues = function () {
 //   console.log(rObj);
 //   return rObj;
 // });
-
-//********************My Grab Vals Test***********
+ 
+//******************** My Grab Vals Test ***********
 // const object1 = { a: 'somestring', b: 42, c: false};
-// console.log(Object.grabValue(object1)); // ["somestring", 42, false]
+// console.log(Object.grabValues(object1)); // ["somestring", 42, false]
 // console.log(Object.values(object1));  // ["somestring", 42, false]
 
 // const anObj = { 100: 'a', 2: 'b', 7: 'c' };
-// console.log(Object.grabValue(anObj)); // ['b', 'c', 'a']
+// console.log(Object.grabValues(anObj)); // ['b', 'c', 'a']
 // console.log(Object.values(anObj));     // ['b', 'c', 'a']
 
-//********************My Every Test***********
+//******************** My Every Test ***********
 // const isBelowThreshold = (currentValue) => currentValue < 10;
 //
 // const array1 = [1, 30, 39, 29, 10, 13];
