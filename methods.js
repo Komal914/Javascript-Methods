@@ -21,12 +21,6 @@ Array.prototype.myMap = function (callbackFn) {
   return newarray;
 };
 
-// const array1 = [1, 4, 9, 16];
-// // pass a function to map
-// const map1 = array1.myMap((x) => x * 2);
-// console.log(map1);
-// expected output: Array [2, 8, 18, 32]
-
 // FILTER //
 //creates a new array with only the vals that fit the call back func's conditions
 Array.prototype.myFilter = function (callbackFn) {
@@ -86,20 +80,6 @@ Array.prototype.myReduce = function (callbackFn, anotherVal) {
   }
   return accumulator;
 };
-
-// const array1 = [1, 2, 3, 4];
-// const reducer = (previousValue, currentValue) => previousValue + currentValue;
-
-// 1 + 2 + 3 + 4
-// console.log("Correct:", array1.reduce(reducer));
-// // expected output: 10
-// console.log("Mine:", array1.myReduce(reducer));
-//
-// // 5 + 1 + 2 + 3 + 4
-// console.log("Correct 2:", array1.reduce(reducer, 5));
-// console.log("MINE", array1.myReduce(reducer, 5));
-
-// expected output: 15
 
 //*******************Start of Sanjidah Abdullah's functions***************
 // INCLUDES//
@@ -188,7 +168,10 @@ Array.prototype.myPush = function (...args) {
 
 // LASTINDEXOF //
 // returns the last index at which a given element can be found in the array, or -1 if it is not present.
-Array.prototype.myLastIndexOf = function (searchElement, fromIndex = this.length - 1) {
+Array.prototype.myLastIndexOf = function (
+  searchElement,
+  fromIndex = this.length - 1
+) {
   if (fromIndex >= this.length) {
     for (let i = fromIndex; i >= 0; i--) {
       // iterating from end of array
@@ -217,15 +200,16 @@ Array.prototype.myLastIndexOf = function (searchElement, fromIndex = this.length
 // console.log(animals.myLastIndexOf('Dodo',-2));  // expected output: 0
 
 // KEYS //
-/* returns an array of a given object's own enumerable property names, 
+/* returns an array of a given object's own enumerable property names,
 iterated in the same order that a normal loop would */
-Object.grabKeys= function(obj) {
+Object.grabKeys = function (obj) {
   let newArray = []; // empty array
-  for (const prop in obj) {  // iterates through property in given object
-    newArray.push(prop);  // pushes property name in new array
+  for (const prop in obj) {
+    // iterates through property in given object
+    newArray.push(prop); // pushes property name in new array
   }
   return newArray;
-}
+};
 
 // Test
 // const object1 = { a: 'somestring', b: 42, c: false};
@@ -236,13 +220,13 @@ Object.grabKeys= function(obj) {
 // console.log(Object.grabKeys(anObj)); // ['2', '7', '100']
 // console.log(Object.keys(anObj));     // ['2', '7', '100']
 
-
 // VALUES //
 // returns an array of a given object's own enumerable property values
 Object.grabValues = function () {
   let newArray = []; // empty array
-  for (const prop in obj) {  // iterates through property in given object
-    newArray.push(obj[prop]);  // pushes property value in new array
+  for (const prop in obj) {
+    // iterates through property in given object
+    newArray.push(obj[prop]); // pushes property value in new array
   }
   return newArray;
 };
@@ -256,9 +240,29 @@ Object.grabValues = function () {
 // console.log(Object.grabValue(anObj)); // ['b', 'c', 'a']
 // console.log(Object.values(anObj));     // ['b', 'c', 'a']
 
+//********************Tests***********
 
+// My reduce test
+// const array1 = [1, 2, 3, 4];
+// const reducer = (previousValue, currentValue) => previousValue + currentValue;
 
-//********************Test***********
+// 1 + 2 + 3 + 4
+// console.log("Correct:", array1.reduce(reducer));
+// // expected output: 10
+// console.log("Mine:", array1.myReduce(reducer));
+//
+// // 5 + 1 + 2 + 3 + 4
+// console.log("Correct 2:", array1.reduce(reducer, 5));
+// console.log("MINE", array1.myReduce(reducer, 5));
+
+// expected output: 15
+
+//for each test
+// const array1 = [1, 4, 9, 16];
+// // pass a function to map
+// const map1 = array1.myMap((x) => x * 2);
+// console.log(map1);
+// expected output: Array [2, 8, 18, 32]
 // const isBelowThreshold = (currentValue) => currentValue < 10;
 //
 // const array1 = [1, 30, 39, 29, 10, 13];
