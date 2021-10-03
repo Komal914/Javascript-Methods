@@ -17,8 +17,7 @@ Array.prototype.myMap = function (callbackFn) {
 
   //for the length of this array
   for (let i = 0; i < this.length; i++) {
-    newarray[i] = callbackFn(this[i]);
-    console.log("new array: ", newarray);
+    newarray[i] = callbackFn(this[i], i, this);
   }
   return newarray;
 };
@@ -43,7 +42,7 @@ Array.prototype.myFilter = function (callbackFn) {
 Array.prototype.mySome = function (callbackFn) {
   //loops through my array
   for (let i = 0; i < this.length; i++) {
-    let isTrue = callbackFn(this[i]); //isTrue is true when callbackfn's conditions are met
+    let isTrue = callbackFn(this[i], i, this); //isTrue is true when callbackfn's conditions are met
     if (isTrue == true) {
       return true; //return true if an element meets the reqs
     }
@@ -57,7 +56,7 @@ Array.prototype.myEvery = function (callbackFn) {
   //loops through my array
   for (let i = 0; i < this.length; i++) {
     //check if any val is false
-    let isFalse = callbackFn(this[i]); //holds if true or false for callbackfn
+    let isFalse = callbackFn(this[i], i, this); //holds if true or false for callbackfn
     if (isFalse == false) {
       //check for false, because if any one val is false, the whole thing is false because we want all elements to be true
       return false;
@@ -73,7 +72,7 @@ Array.prototype.myReduce = function (callbackFn, anotherVal) {
   for (let i = 0; i < this.length; i++) {
     let currentValue = this[i];
     //update accumulator with the func
-    accumulator = callbackFn(accumulator, currentValue);
+    accumulator = callbackFn(accumulator, currentValue, this[i], this);
   }
   //if another val is provided
   if (anotherVal != undefined) {
@@ -201,20 +200,78 @@ Object.grabValues = function () {
 
 //**********************************Tests******************************
 
-//********************My Reducer Test***********
-// const array1 = [1, 2, 3, 4];
-// const reducer = (previousValue, currentValue) => previousValue + currentValue;
-
-// 1 + 2 + 3 + 4
-// console.log("Correct:", array1.reduce(reducer));
-// // expected output: 10
-// console.log("Mine:", array1.myReduce(reducer));
+//********************My Some Test***********
+// const array = [1, 2, 3, 4, 5];
 //
-// // 5 + 1 + 2 + 3 + 4
-// console.log("Correct 2:", array1.reduce(reducer, 5));
-// console.log("MINE", array1.myReduce(reducer, 5));
+// // checks whether an element is even
+// const even = (element) => element % 2 === 0;
+//
+// console.log(array.mySome(even));
+// expected output: true
+
+//another test
+
+// function isBiggerThan10(element, index, array) {
+//   return element > 10;
+// }
+//
+// let result = [2, 5, 8, 1, 4].mySome(isBiggerThan10); // false
+// console.log(result);
+//
+// result = [12, 5, 8, 1, 4].mySome(isBiggerThan10); // true
+// console.log(result);
+
+//********************My Filter Test***********
+// const words = [
+//   "spray",
+//   "limit",
+//   "elite",
+//   "exuberant",
+//   "destruction",
+//   "present",
+// ];
+//
+// const result = words.myFilter((word) => word.length > 6);
+//
+// console.log(result);
+// // expected output: Array ["exuberant", "destruction", "present"]
+
+//another test
+
+// function isBigEnough(value) {
+//   return value >= 10;
+// }
+//
+// let filtered = [12, 5, 8, 130, 44].myFilter(isBigEnough);
+// console.log(filtered);
+// filtered is [12, 130, 44]
+
+//********************My Each Test***********
+// const array1 = ["a", "b", "c"];
+//
+// array1.forEach((element) => console.log("Correct: ", element));
+// array1.myEach((element) => console.log("Mine: ", element));
+//
+// // expected output: "a"
+// // expected output: "b"
+// // expected output: "c"
+
+//********************My Reducer Test***********
+const array1 = [1, 2, 3, 4];
+const reducer = (previousValue, currentValue) => previousValue + currentValue;
+
+1 + 2 + 3 + 4;
+console.log("Correct:", array1.reduce(reducer));
+// expected output: 10
+console.log("Mine:", array1.myReduce(reducer));
+
+// 5 + 1 + 2 + 3 + 4
+console.log("Correct 2:", array1.reduce(reducer, 5));
+console.log("MINE", array1.myReduce(reducer, 5));
 
 // expected output: 15
+
+//another test
 
 //********************My Includes Test***********
 // const arr = [1,2,3,4,5];
@@ -257,7 +314,22 @@ Object.grabValues = function () {
 // // pass a function to map
 // const map1 = array1.myMap((x) => x * 2);
 // console.log(map1);
-// expected output: Array [2, 8, 18, 32]
+// //expected output: Array [2, 8, 18, 32]
+//
+// // //another test
+// //
+// let kvArray = [
+//   { key: 1, value: 10 },
+//   { key: 2, value: 20 },
+//   { key: 3, value: 30 },
+// ];
+//
+// let reformattedArray = kvArray.myMap((obj) => {
+//   let rObj = {};
+//   rObj[obj.key] = obj.value;
+//   console.log(rObj);
+//   return rObj;
+// });
 
 //********************My Grab Vals Test***********
 // const object1 = { a: 'somestring', b: 42, c: false};
@@ -275,3 +347,13 @@ Object.grabValues = function () {
 //
 // console.log("VAL", array1.every(isBelowThreshold));
 // console.log("MYVAL", array1.myEvery(isBelowThreshold));
+//
+// //another test
+//
+// function isBigEnough(element, index, array) {
+//   return element >= 10;
+// }
+// let result = [12, 5, 8, 130, 44].myEvery(isBigEnough); // false
+// console.log(result);
+// result = [12, 54, 18, 130, 44].myEvery(isBigEnough); // true
+// console.log(result);
