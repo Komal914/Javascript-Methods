@@ -1,4 +1,6 @@
+//***************************************************************************
 //*******************Start of Komal Kaur's functions***************
+//***************************************************************************
 // FOR EACH //
 // To access each element in the array, pass in a func to be applied
 Array.prototype.myEach = function (callbackFn) {
@@ -20,12 +22,6 @@ Array.prototype.myMap = function (callbackFn) {
   }
   return newarray;
 };
-
-// const array1 = [1, 4, 9, 16];
-// // pass a function to map
-// const map1 = array1.myMap((x) => x * 2);
-// console.log(map1);
-// expected output: Array [2, 8, 18, 32]
 
 // FILTER //
 //creates a new array with only the vals that fit the call back func's conditions
@@ -87,21 +83,9 @@ Array.prototype.myReduce = function (callbackFn, anotherVal) {
   return accumulator;
 };
 
-// const array1 = [1, 2, 3, 4];
-// const reducer = (previousValue, currentValue) => previousValue + currentValue;
-
-// 1 + 2 + 3 + 4
-// console.log("Correct:", array1.reduce(reducer));
-// // expected output: 10
-// console.log("Mine:", array1.myReduce(reducer));
-//
-// // 5 + 1 + 2 + 3 + 4
-// console.log("Correct 2:", array1.reduce(reducer, 5));
-// console.log("MINE", array1.myReduce(reducer, 5));
-
-// expected output: 15
-
+//***************************************************************************
 //*******************Start of Sanjidah Abdullah's functions***************
+//***************************************************************************
 // INCLUDES//
 // determines whether an array includes a certain value among its entries, returning true or false as appropriate
 Array.prototype.myIncludes = function (searchElement, fromIndex = 0) {
@@ -127,16 +111,6 @@ Array.prototype.myIncludes = function (searchElement, fromIndex = 0) {
   }
   return false; // value not found
 };
-
-// Test
-// const arr = [1,2,3,4,5];
-// console.log("myIncludes:");
-// console.log(arr.myIncludes(5));      // true
-// console.log(arr.myIncludes(3,-2));   // false
-
-// console.log("includes:");
-// console.log(arr.includes(5));        // true
-// console.log(arr.includes(3,-2));     // false
 
 // INDEXOF //
 // returns the first index at which a given element can be found in the array, or -1 if it is not present.
@@ -164,14 +138,6 @@ Array.prototype.myIndexOf = function (searchElement, fromIndex = 0) {
   return -1; // value not found
 };
 
-// Test
-// const beasts = ['ant', 'bison', 'camel', 'duck', 'bison'];
-// console.log(beasts.myIndexOf('bison'));
-// console.log(beasts.indexOf('bison'));
-
-// console.log(beasts.myIndexOf('bison', 2));
-// console.log(beasts.indexOf('bison', 2));
-
 // PUSH: adds one or more elements to the end of an array and returns the new length of the array.//
 Array.prototype.myPush = function (...args) {
   let arg_i = 0;
@@ -188,7 +154,10 @@ Array.prototype.myPush = function (...args) {
 
 // LASTINDEXOF //
 // returns the last index at which a given element can be found in the array, or -1 if it is not present.
-Array.prototype.myLastIndexOf = function (searchElement, fromIndex = this.length - 1) {
+Array.prototype.myLastIndexOf = function (
+  searchElement,
+  fromIndex = this.length - 1
+) {
   if (fromIndex >= this.length) {
     for (let i = fromIndex; i >= 0; i--) {
       // iterating from end of array
@@ -207,7 +176,65 @@ Array.prototype.myLastIndexOf = function (searchElement, fromIndex = this.length
   return -1; // value not found
 };
 
-// Test
+// KEYS //
+/* returns an array of a given object's own enumerable property names,
+iterated in the same order that a normal loop would */
+Object.grabKeys = function (obj) {
+  let newArray = []; // empty array
+  for (const prop in obj) {
+    // iterates through property in given object
+    newArray.push(prop); // pushes property name in new array
+  }
+  return newArray;
+};
+
+// VALUES //
+// returns an array of a given object's own enumerable property values
+Object.grabValues = function () {
+  let newArray = []; // empty array
+  for (const prop in obj) {
+    // iterates through property in given object
+    newArray.push(obj[prop]); // pushes property value in new array
+  }
+  return newArray;
+};
+
+//**********************************Tests******************************
+
+//********************My Reducer Test***********
+// const array1 = [1, 2, 3, 4];
+// const reducer = (previousValue, currentValue) => previousValue + currentValue;
+
+// 1 + 2 + 3 + 4
+// console.log("Correct:", array1.reduce(reducer));
+// // expected output: 10
+// console.log("Mine:", array1.myReduce(reducer));
+//
+// // 5 + 1 + 2 + 3 + 4
+// console.log("Correct 2:", array1.reduce(reducer, 5));
+// console.log("MINE", array1.myReduce(reducer, 5));
+
+// expected output: 15
+
+//********************My Includes Test***********
+// const arr = [1,2,3,4,5];
+// console.log("myIncludes:");
+// console.log(arr.myIncludes(5));      // true
+// console.log(arr.myIncludes(3,-2));   // false
+
+// console.log("includes:");
+// console.log(arr.includes(5));        // true
+// console.log(arr.includes(3,-2));     // false
+
+//********************My indexof Test***********
+// const beasts = ['ant', 'bison', 'camel', 'duck', 'bison'];
+// console.log(beasts.myIndexOf('bison'));
+// console.log(beasts.indexOf('bison'));
+
+// console.log(beasts.myIndexOf('bison', 2));
+// console.log(beasts.indexOf('bison', 2));
+
+//********************My Lastindexof Test***********
 // const animals = ['Dodo', 'Tiger', 'Penguin', 'Dodo'];
 
 // console.log(animals.lastIndexOf('Dodo'));    // expected output: 3
@@ -216,18 +243,7 @@ Array.prototype.myLastIndexOf = function (searchElement, fromIndex = this.length
 // console.log(animals.lastIndexOf('Dodo',-2));    // expected output: 0
 // console.log(animals.myLastIndexOf('Dodo',-2));  // expected output: 0
 
-// KEYS //
-/* returns an array of a given object's own enumerable property names, 
-iterated in the same order that a normal loop would */
-Object.grabKeys= function(obj) {
-  let newArray = []; // empty array
-  for (const prop in obj) {  // iterates through property in given object
-    newArray.push(prop);  // pushes property name in new array
-  }
-  return newArray;
-}
-
-// Test
+//********************My Grab Keys Test***********
 // const object1 = { a: 'somestring', b: 42, c: false};
 // console.log(Object.grabKeys(object1)); // ["a", "b", "c"]
 // console.log(Object.keys(object1));  // ["a", "b", "c"]
@@ -236,18 +252,14 @@ Object.grabKeys= function(obj) {
 // console.log(Object.grabKeys(anObj)); // ['2', '7', '100']
 // console.log(Object.keys(anObj));     // ['2', '7', '100']
 
+//********************My Map Test***********
+// const array1 = [1, 4, 9, 16];
+// // pass a function to map
+// const map1 = array1.myMap((x) => x * 2);
+// console.log(map1);
+// expected output: Array [2, 8, 18, 32]
 
-// VALUES //
-// returns an array of a given object's own enumerable property values
-Object.grabValues = function () {
-  let newArray = []; // empty array
-  for (const prop in obj) {  // iterates through property in given object
-    newArray.push(obj[prop]);  // pushes property value in new array
-  }
-  return newArray;
-};
-
-// Test
+//********************My Grab Vals Test***********
 // const object1 = { a: 'somestring', b: 42, c: false};
 // console.log(Object.grabValue(object1)); // ["somestring", 42, false]
 // console.log(Object.values(object1));  // ["somestring", 42, false]
@@ -256,9 +268,7 @@ Object.grabValues = function () {
 // console.log(Object.grabValue(anObj)); // ['b', 'c', 'a']
 // console.log(Object.values(anObj));     // ['b', 'c', 'a']
 
-
-
-//********************Test***********
+//********************My Every Test***********
 // const isBelowThreshold = (currentValue) => currentValue < 10;
 //
 // const array1 = [1, 30, 39, 29, 10, 13];
